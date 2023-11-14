@@ -16,6 +16,7 @@ def get_min_and_target_year_values(dataframe, target_year):
     return result
 
 # Read the input CSV file with headers
+#Data source -> https://www.kaggle.com/datasets/luxoloshilofunde/life-expectancy-vs-gdp-19502018
 input_file = 'Life Expectancy vs GDP 1950-2018.csv'
 df = pd.read_csv(input_file)
 
