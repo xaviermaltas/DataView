@@ -1,3 +1,4 @@
+#python3 parallelCoordinatesPlot_iris.py
 import plotly.express as px
 import pandas as pd
 
@@ -15,5 +16,8 @@ fig = px.parallel_coordinates(df,
                               color_continuous_scale=px.colors.diverging.Tealrose,
                               color_continuous_midpoint=1)
 
-# Save the plot to a file
+# Save the plot as a PNG file
+fig.write_image('parallelCoordinatesPlot_iris.png')
+
+# Save the plot as an HTML file
 fig.write_html('parallelCoordinatesPlot_iris.html')
