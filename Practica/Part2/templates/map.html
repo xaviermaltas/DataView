@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_8ba463b033ce9533bf648b2966632f83 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_8ba463b033ce9533bf648b2966632f83" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_8ba463b033ce9533bf648b2966632f83 = L.map(
+                "map_8ba463b033ce9533bf648b2966632f83",
+                {
+                    center: [41.8781, 1.85],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 9,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_98914c8fb668f49f89b82380e94c120d = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_98914c8fb668f49f89b82380e94c120d.addTo(map_8ba463b033ce9533bf648b2966632f83);
+        
+    
+            var marker_dade58e531088d93ba5934f3d33c8bc6 = L.marker(
+                [41.135534, 0.952761],
+                {}
+            ).addTo(map_8ba463b033ce9533bf648b2966632f83);
+        
+    
+        var popup_63d8c2e26d2cdb1e4c2887def1b67882 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3a31db266192a61b4620dd4ae490f62f = $(`<div id="html_3a31db266192a61b4620dd4ae490f62f" style="width: 100.0%; height: 100.0%;">Embassament de Riudecanyes</div>`)[0];
+                popup_63d8c2e26d2cdb1e4c2887def1b67882.setContent(html_3a31db266192a61b4620dd4ae490f62f);
+            
+        
+
+        marker_dade58e531088d93ba5934f3d33c8bc6.bindPopup(popup_63d8c2e26d2cdb1e4c2887def1b67882)
+        ;
+
+        
+    
+    
+            var marker_b0bcc79344cea8a2879030dbfde56a1a = L.marker(
+                [41.251434, 0.91491],
+                {}
+            ).addTo(map_8ba463b033ce9533bf648b2966632f83);
+        
+    
+        var popup_a05cdc9034328d1de6f32656217c5a72 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ba421b87c50320ac877c2a6e543e40f0 = $(`<div id="html_ba421b87c50320ac877c2a6e543e40f0" style="width: 100.0%; height: 100.0%;">Embassament de Siurana</div>`)[0];
+                popup_a05cdc9034328d1de6f32656217c5a72.setContent(html_ba421b87c50320ac877c2a6e543e40f0);
+            
+        
+
+        marker_b0bcc79344cea8a2879030dbfde56a1a.bindPopup(popup_a05cdc9034328d1de6f32656217c5a72)
+        ;
+
+        
+    
+    
+            var marker_e5bfc2ca343c904024da42b5c50caf20 = L.marker(
+                [42.119826, 1.603408],
+                {}
+            ).addTo(map_8ba463b033ce9533bf648b2966632f83);
+        
+    
+        var popup_c164e3bf660a115ab7dddd71ae08b381 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0bb6b27697557de5c467cc4013e5b7d7 = $(`<div id="html_0bb6b27697557de5c467cc4013e5b7d7" style="width: 100.0%; height: 100.0%;">Embassament de la Llosa del Cavall</div>`)[0];
+                popup_c164e3bf660a115ab7dddd71ae08b381.setContent(html_0bb6b27697557de5c467cc4013e5b7d7);
+            
+        
+
+        marker_e5bfc2ca343c904024da42b5c50caf20.bindPopup(popup_c164e3bf660a115ab7dddd71ae08b381)
+        ;
+
+        
+    
+    
+            var marker_1fe86eb17a9d38b99199039f929f3a04 = L.marker(
+                [41.970321, 1.602382],
+                {}
+            ).addTo(map_8ba463b033ce9533bf648b2966632f83);
+        
+    
+        var popup_a760ce0b925252d1093883151f243b9c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3c6fe1d06613a753ebbb7b699c9391f0 = $(`<div id="html_3c6fe1d06613a753ebbb7b699c9391f0" style="width: 100.0%; height: 100.0%;">Embassament de Sant Ponç</div>`)[0];
+                popup_a760ce0b925252d1093883151f243b9c.setContent(html_3c6fe1d06613a753ebbb7b699c9391f0);
+            
+        
+
+        marker_1fe86eb17a9d38b99199039f929f3a04.bindPopup(popup_a760ce0b925252d1093883151f243b9c)
+        ;
+
+        
+    
+    
+            var marker_cba731a0b36fe1b813017c7afea8e217 = L.marker(
+                [41.977093, 2.515127],
+                {}
+            ).addTo(map_8ba463b033ce9533bf648b2966632f83);
+        
+    
+        var popup_4bc3dac91ab5e7159637a16231418edc = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b7f59fbb51e921d47a359e188daaed43 = $(`<div id="html_b7f59fbb51e921d47a359e188daaed43" style="width: 100.0%; height: 100.0%;">Embassament de Susqueda</div>`)[0];
+                popup_4bc3dac91ab5e7159637a16231418edc.setContent(html_b7f59fbb51e921d47a359e188daaed43);
+            
+        
+
+        marker_cba731a0b36fe1b813017c7afea8e217.bindPopup(popup_4bc3dac91ab5e7159637a16231418edc)
+        ;
+
+        
+    
+    
+            var marker_ff4584db93ec0b6a8d0723a9a7b5b057 = L.marker(
+                [42.349122, 2.827378],
+                {}
+            ).addTo(map_8ba463b033ce9533bf648b2966632f83);
+        
+    
+        var popup_c0d4d37e10420cc707bd194b92d27e49 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_200cfdd206e232298266eba6b6ea9023 = $(`<div id="html_200cfdd206e232298266eba6b6ea9023" style="width: 100.0%; height: 100.0%;">Embassament de Darnius Boadella</div>`)[0];
+                popup_c0d4d37e10420cc707bd194b92d27e49.setContent(html_200cfdd206e232298266eba6b6ea9023);
+            
+        
+
+        marker_ff4584db93ec0b6a8d0723a9a7b5b057.bindPopup(popup_c0d4d37e10420cc707bd194b92d27e49)
+        ;
+
+        
+    
+    
+            var marker_477c76f3c7f7b10d523d464406e38d75 = L.marker(
+                [41.973856, 2.385534],
+                {}
+            ).addTo(map_8ba463b033ce9533bf648b2966632f83);
+        
+    
+        var popup_03e787b6cc4fbeb68fa810b5c2b35fa2 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_95a1289b151eab1fe0339219462270be = $(`<div id="html_95a1289b151eab1fe0339219462270be" style="width: 100.0%; height: 100.0%;">Embassament de Sau</div>`)[0];
+                popup_03e787b6cc4fbeb68fa810b5c2b35fa2.setContent(html_95a1289b151eab1fe0339219462270be);
+            
+        
+
+        marker_477c76f3c7f7b10d523d464406e38d75.bindPopup(popup_03e787b6cc4fbeb68fa810b5c2b35fa2)
+        ;
+
+        
+    
+    
+            var marker_3c117d9e96de67a6cb014233937f7960 = L.marker(
+                [42.129728, 1.878302],
+                {}
+            ).addTo(map_8ba463b033ce9533bf648b2966632f83);
+        
+    
+        var popup_f26632ca34fbd1c4482538a8aced0d4e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_850d18022790323ec5527e3fd2aead43 = $(`<div id="html_850d18022790323ec5527e3fd2aead43" style="width: 100.0%; height: 100.0%;">Embassament de la Baells</div>`)[0];
+                popup_f26632ca34fbd1c4482538a8aced0d4e.setContent(html_850d18022790323ec5527e3fd2aead43);
+            
+        
+
+        marker_3c117d9e96de67a6cb014233937f7960.bindPopup(popup_f26632ca34fbd1c4482538a8aced0d4e)
+        ;
+
+        
+    
+    
+            var marker_f2905f798586751f0b40d6d1f0031630 = L.marker(
+                [41.258044, 1.640253],
+                {}
+            ).addTo(map_8ba463b033ce9533bf648b2966632f83);
+        
+    
+        var popup_505e1403712043727aba48bb98df7377 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ce733cae06f481f7efb434b5633f2d5d = $(`<div id="html_ce733cae06f481f7efb434b5633f2d5d" style="width: 100.0%; height: 100.0%;">Embassament de Foix</div>`)[0];
+                popup_505e1403712043727aba48bb98df7377.setContent(html_ce733cae06f481f7efb434b5633f2d5d);
+            
+        
+
+        marker_f2905f798586751f0b40d6d1f0031630.bindPopup(popup_505e1403712043727aba48bb98df7377)
+        ;
+
+        
+    
+</script>
+</html>
