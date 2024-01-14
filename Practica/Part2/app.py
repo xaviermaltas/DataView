@@ -14,7 +14,10 @@ def index():
 
     # Add markers for each swamp from the CSV file
     for _, swamp in swamps_df.iterrows():
-        folium.Marker([swamp["Latitude"], swamp["Longitude"]], popup=swamp["Name"]).add_to(m)
+        folium.Marker(
+            [swamp["Latitude"], swamp["Longitude"]], 
+            popup=swamp["Name"]
+        ).add_to(m)
 
     # Save the map to an HTML file
     map_file_path = "templates/map.html"
