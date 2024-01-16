@@ -64,6 +64,19 @@
         .modal-lg {
             max-width: 90% !important;
         }
+
+        .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+            background: white;
+            color: black;
+            border: 1px solid #ced4da;
+            border-radius: 0.3rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .leaflet-popup-content {
+            padding: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -113,51 +126,61 @@
 
             $('#swampModal').modal('show');
 
-        // Plot Current Volume (%)
-        var currentVolumePlotData = [{
-            x: ['Current Volume'],
-            y: [swamp.records[0].percentatge_volum_embassat],
-            type: 'bar',
-            text: [swamp.records[0].percentatge_volum_embassat + '%'],
-            textposition: 'auto',
-            name: 'Current Volume (%)'
-        }];
+            // Plot Current Volume (%)
+            var currentVolumePlotData = [{
+                x: [''],
+                y: [swamp.records[0].percentatge_volum_embassat],
+                type: 'bar',
+                text: [swamp.records[0].percentatge_volum_embassat + '%'],
+                textposition: 'auto',
+                name: ''
+            }];
 
-        var currentVolumePlotLayout = {
-            title: 'Current Volume (%)',
-            xaxis: {
-                title: 'Volume (%)'
-            },
-            yaxis: {
-                title: 'Swamp',
-                range: [0, 100]
-            }
-        };
-
-
-// Adjust the width of the plot by directly setting the width of the svg container
-var svgContainer = document.querySelector('#currentVolumePlot .plotly');
-// svgContainer.style.width = '100%';
-
-Plotly.newPlot('currentVolumePlot', currentVolumePlotData, currentVolumePlotLayout);
-
+            var currentVolumePlotLayout = {
+                title: ' Volume d\'aigua actual (%)',
+                xaxis: {
+                    title: ''
+                },
+                yaxis: {
+                    title: '',
+                    range: [0, 100]
+                }
+            };
+            Plotly.newPlot('currentVolumePlot', currentVolumePlotData, currentVolumePlotLayout);
 
             // Plot Historical Volume over Time
             var historicalVolumePlotData = [{
-                x: swamp.records.map(record => record.year), // Use the year values
+                x: swamp.records.map(record => record.day), // Use the day values
                 y: swamp.records.map(record => record.percentatge_volum_embassat),
+                hovertemplate: '%{text}',
+                text: swamp.records.map(record => {
+                    // Ensure month is treated as a string and format date as dd/mm/yyyy
+                    var formattedDate = record.day.slice(-2) + '/' + String(record.month).padStart(2, '0') + '/' + record.year;
+                    // Build custom hover text
+                    var hoverText = `
+                        Data : ${formattedDate}<br>
+                        Volum d'aigua embassat : ${record.volum_embassat} hm3<br>
+                        Percentatge de volum embassat : ${record.percentatge_volum_embassat} %
+                    `;
+                    return hoverText;
+                }),
                 type: 'scatter',
                 mode: 'lines+markers',
-                name: 'Historical Volume'
+                name: '' // Remove the name to get rid of the text next to the plot
             }];
 
             var historicalVolumePlotLayout = {
-                title: 'Historical Volume over Time',
+                title: 'Historial del volum d\'aigua',
                 xaxis: {
-                    title: 'Year'
+                    title: 'Data'
                 },
                 yaxis: {
-                    title: 'Water Volume (%)'
+                    title: 'Volum d\'aigua (%)'
+                },
+                hoverlabel: {
+                    bgcolor: 'white',  // Set background color of hover label to white
+                    bordercolor: 'black',  // Set border color of hover label to blue
+                    font: { color: 'black' } // Set text color to black
                 },
                 minHeight: '600px',
                 minWidth: '900px',
@@ -165,6 +188,7 @@ Plotly.newPlot('currentVolumePlot', currentVolumePlotData, currentVolumePlotLayo
             };
 
             Plotly.newPlot('historicalVolumePlot', historicalVolumePlotData, historicalVolumePlotLayout);
+
 
 
             // Output swamp objects to console for debugging
