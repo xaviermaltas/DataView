@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
         #map {
-            height: calc(100vh - 20px);
-            margin: 10px;
+            height: calc(100vh - 60px); /* Increased margin from top and bottom */
+            margin: 20px; /* Increased margin for all sides */
+            border-radius: 15px; /* Added border-radius */
         }
 
         #swampModal {
@@ -80,6 +81,10 @@
         .custom-tooltip {
             max-width: 250px; /* Adjusted for tooltip width */
         }
+
+        h1 {
+            margin: 10px 20px 15px; /* Increased margin for the title on all sides */
+        }
     </style>
 </head>
 <body>
@@ -96,7 +101,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
-        var map = L.map('map').setView([41.8781, 1.85], 9);
+        var map = L.map('map').setView([41.6781, 1.84], 9);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
