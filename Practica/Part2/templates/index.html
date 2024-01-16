@@ -46,10 +46,12 @@
 
         #currentVolumePlot {
             width: 28%;
+            max-width: 25rem;
         }
 
         #historicalVolumePlot {
             width: 72%;
+            max-width: 53rem;
         }
 
         #historicalVolumePlot {
@@ -129,8 +131,6 @@
             }
         };
 
-// Set the width of the entire plot container
-document.getElementById('currentVolumePlot').style.maxWidth = '500px';
 
 // Adjust the width of the plot by directly setting the width of the svg container
 var svgContainer = document.querySelector('#currentVolumePlot .plotly');
@@ -157,11 +157,6 @@ Plotly.newPlot('currentVolumePlot', currentVolumePlotData, currentVolumePlotLayo
                     title: 'Water Volume (%)'
                 }
             };
-            
-
-            // Set the width of the entire plot container
-            document.getElementById('historicalVolumePlot').style.maxWidth = '75rem';
-
             Plotly.newPlot('historicalVolumePlot', historicalVolumePlotData, historicalVolumePlotLayout);
 
 
