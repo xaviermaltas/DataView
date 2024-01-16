@@ -24,6 +24,14 @@
             border-radius: 0.3rem;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
+        .leaflet-popup-content-wrapper {
+            background: white;
+            border: 1px solid #ced4da;
+            border-radius: 0.3rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
@@ -47,16 +55,18 @@
 
         {% for swamp in swamps_data %}
             var swampObj = {{ swamp|tojson|safe }};
-            var marker = L.marker([swampObj.coordinates.Latitude, swampObj.coordinates.Longitude])
+            var marker = L.marker([swampObj.coordinates.Latitude, swampObj.coordinates.Longitude], { swampId: "{{ loop.index }}" })
                 .addTo(map)
                 .bindPopup("<b>" + swampObj.name + "</b><br>" + swampObj.poble + ", " + swampObj.comarca)
-                .on('click', function () {
-                    openModal(swampObj);
+                .on('click', function (e) {
+                    e.target.closePopup();
+                    openModal(e.target.options.swampId);
                 });
         {% endfor %}
 
         // Function to open modal with swamp information
-        function openModal(swamp) {
+        function openModal(swampId) {
+            var swamp = {{ swamps_data|tojson|safe }}[swampId - 1];
             var modalBody = document.getElementById("swampModalBody");
             modalBody.innerHTML = `
                 <p><strong>Name:</strong> ${swamp.name}</p>
@@ -64,6 +74,8 @@
                 <p><strong>Comarca:</strong> ${swamp.comarca}</p>
                 <p><strong>Coordinates:</strong> ${swamp.coordinates.Latitude}, ${swamp.coordinates.Longitude}</p>
                 <p><strong>Number of Records:</strong> ${swamp.records.length}</p>
+                <p><strong>Volume (%):</strong> ${swamp.records[0].percentatge_volum_embassat}</p>
+                <p><strong>Water Volume:</strong> ${swamp.records[0].volum_embassat}</p>
             `;
             $('#swampModal').modal('show');
         }
