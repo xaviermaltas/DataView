@@ -36,7 +36,10 @@
         #volumePlots {
             display: flex;
             flex-direction: row; /* Adjusted to a column layout */
-            height: 43rem;
+            min-height: 43rem;
+            height: auto;
+            max-height: 85rem;
+
         }
 
         #currentVolumePlot,
@@ -51,7 +54,7 @@
 
         #historicalVolumePlot {
             width: 72%;
-            max-width: 53rem;
+            max-width: 55rem;
         }
 
         #historicalVolumePlot {
@@ -155,12 +158,15 @@ Plotly.newPlot('currentVolumePlot', currentVolumePlotData, currentVolumePlotLayo
                 },
                 yaxis: {
                     title: 'Water Volume (%)'
-                }
+                },
+                minHeight: '600px',
+                minWidth: '900px',
+                maxWidth: '50rem'
             };
+
+            document.getElementById('historicalVolumePlot').style.maxWidth = '1200px';
+
             Plotly.newPlot('historicalVolumePlot', historicalVolumePlotData, historicalVolumePlotLayout);
-
-
-
 
 
             // Output swamp objects to console for debugging
