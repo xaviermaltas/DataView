@@ -32,6 +32,33 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 10px;
         }
+
+        #volumePlots {
+            display: flex;
+            flex-direction: row; /* Adjusted to a column layout */
+            height: 43rem;
+        }
+
+        #currentVolumePlot,
+        #historicalVolumePlot {
+            height: 700px; /* Adjusted to make the plots bigger */
+        }
+
+        #currentVolumePlot {
+            width: 28%;
+        }
+
+        #historicalVolumePlot {
+            width: 72%;
+        }
+
+        #historicalVolumePlot {
+            flex: 1; /* Adjusted to 80% height */
+        }
+
+        .modal-lg {
+            max-width: 90% !important;
+        }
     </style>
 </head>
 <body>
@@ -46,6 +73,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
         var map = L.map('map').setView([41.8781, 1.85], 9);
 
@@ -67,26 +95,90 @@
         // Function to open modal with swamp information
         function openModal(swampId) {
             var swamp = {{ swamps_data|tojson|safe }}[swampId - 1];
+            var modalTitle = document.getElementById("swampModalLabel");
+            modalTitle.innerText = swamp.name;
+
             var modalBody = document.getElementById("swampModalBody");
             modalBody.innerHTML = `
-                <p><strong>Name:</strong> ${swamp.name}</p>
-                <p><strong>Poble:</strong> ${swamp.poble}</p>
-                <p><strong>Comarca:</strong> ${swamp.comarca}</p>
-                <p><strong>Coordinates:</strong> ${swamp.coordinates.Latitude}, ${swamp.coordinates.Longitude}</p>
-                <p><strong>Number of Records:</strong> ${swamp.records.length}</p>
-                <p><strong>Volume (%):</strong> ${swamp.records[0].percentatge_volum_embassat}</p>
-                <p><strong>Water Volume:</strong> ${swamp.records[0].volum_embassat}</p>
+                <div id="volumePlots">
+                    <div id="currentVolumePlot"></div>
+                    <div id="historicalVolumePlot"></div>
+                </div>
             `;
+
             $('#swampModal').modal('show');
+
+        // Plot Current Volume (%)
+        var currentVolumePlotData = [{
+            x: ['Current Volume'],
+            y: [swamp.records[0].percentatge_volum_embassat],
+            type: 'bar',
+            text: [swamp.records[0].percentatge_volum_embassat + '%'],
+            textposition: 'auto',
+            name: 'Current Volume (%)'
+        }];
+
+        var currentVolumePlotLayout = {
+            title: 'Current Volume (%)',
+            xaxis: {
+                title: 'Volume (%)'
+            },
+            yaxis: {
+                title: 'Swamp',
+                range: [0, 100]
+            }
+        };
+
+// Set the width of the entire plot container
+document.getElementById('currentVolumePlot').style.maxWidth = '500px';
+
+// Adjust the width of the plot by directly setting the width of the svg container
+var svgContainer = document.querySelector('#currentVolumePlot .plotly');
+// svgContainer.style.width = '100%';
+
+Plotly.newPlot('currentVolumePlot', currentVolumePlotData, currentVolumePlotLayout);
+
+
+            // Plot Historical Volume over Time
+            var historicalVolumePlotData = [{
+                x: swamp.records.map(record => record.year), // Use the year values
+                y: swamp.records.map(record => record.percentatge_volum_embassat),
+                type: 'scatter',
+                mode: 'lines+markers',
+                name: 'Historical Volume'
+            }];
+
+            var historicalVolumePlotLayout = {
+                title: 'Historical Volume over Time',
+                xaxis: {
+                    title: 'Year'
+                },
+                yaxis: {
+                    title: 'Water Volume (%)'
+                }
+            };
+            
+
+            // Set the width of the entire plot container
+            document.getElementById('historicalVolumePlot').style.maxWidth = '75rem';
+
+            Plotly.newPlot('historicalVolumePlot', historicalVolumePlotData, historicalVolumePlotLayout);
+
+
+
+
+
+            // Output swamp objects to console for debugging
+            console.log(swamp);
         }
     </script>
 
     <!-- Modal -->
     <div class="modal fade" id="swampModal" tabindex="-1" aria-labelledby="swampModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="swampModalLabel">Swamp Information</h5>
+                    <h5 class="modal-title" id="swampModalLabel"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
