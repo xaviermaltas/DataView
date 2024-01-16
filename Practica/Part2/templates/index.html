@@ -77,6 +77,9 @@
             padding: 10px;
         }
 
+        .custom-tooltip {
+            max-width: 250px; /* Adjusted for tooltip width */
+        }
     </style>
 </head>
 <body>
@@ -107,7 +110,12 @@
                 .on('click', function (e) {
                     e.target.closePopup();
                     openModal(e.target.options.swampId);
-                });
+                })
+                .bindTooltip("<b>" + swampObj.name + "</b><br>" +
+                    swampObj.poble + ", " + swampObj.comarca + "<br>" +
+                    "Volum embassat : " + swampObj.records[0].volum_embassat + " hm3 (" + swampObj.records[0].percentatge_volum_embassat + "%)", 
+                    { className: 'custom-tooltip' }); // Add Tooltip
+
         {% endfor %}
 
         // Function to open modal with swamp information
@@ -137,7 +145,7 @@
             }];
 
             var currentVolumePlotLayout = {
-                title: ' Volume d\'aigua actual (%)',
+                title: ' Volum embassat (%)',
                 xaxis: {
                     title: ''
                 },
@@ -188,8 +196,6 @@
             };
 
             Plotly.newPlot('historicalVolumePlot', historicalVolumePlotData, historicalVolumePlotLayout);
-
-
 
             // Output swamp objects to console for debugging
             console.log(swamp);
