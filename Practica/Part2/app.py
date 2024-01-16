@@ -24,11 +24,12 @@ class SwampRecord:
         self.volum_embassat = volum_embassat
 
 class Swamp:
-    def __init__(self, name, poble, comarca, coordinates):
+    def __init__(self, name, poble, comarca, max_capacity, coordinates):
         self.name = name
         self.poble = poble
         self.comarca = comarca
         self.coordinates = coordinates
+        self.max_capacity = max_capacity
         self.records = []
 
 # Create a dictionary to hold Swamp objects with the swamp name as the key
@@ -41,7 +42,7 @@ for _, row in combined_df.iterrows():
     # Create a Swamp object if it doesn't exist in the dictionary
     if swamp_name not in swamps_data_dict:
         coordinates = {'Latitude': row['Latitude'], 'Longitude': row['Longitude']}
-        swamps_data_dict[swamp_name] = Swamp(swamp_name, row['Poble'], row['Comarca'], coordinates)
+        swamps_data_dict[swamp_name] = Swamp(swamp_name, row['Poble'], row['Comarca'], row['MaxVolume (hm3)'], coordinates)
 
     # Create a SwampRecord object for each row and append to the records list
     record = SwampRecord(row['Dia'], row['Mes'], row['Any'], row['Nivell absolut (msnm)'],
@@ -58,13 +59,15 @@ swamps_data = list(swamps_data_dict.values())
 #     print(f"Comarca: {swamp.comarca}")
 #     print(f"Coordinates: {swamp.coordinates}")
 #     print(f"Number of Registers: {len(swamp.records)}")
-    
+
+
 # Convert Swamp objects to dictionaries
 swamps_data_dict_for_template = [{ 
     'name': swamp.name, 
     'poble': swamp.poble, 
     'comarca': swamp.comarca, 
     'coordinates': swamp.coordinates, 
+    'max_capacity': swamp.max_capacity,
     'records': [{'day': record.day, 'month': record.month, 'year': record.year,
                  'nivell_absolut': record.nivell_absolut, 
                  'percentatge_volum_embassat': record.percentatge_volum_embassat, 
